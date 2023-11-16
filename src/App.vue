@@ -7,7 +7,7 @@
     data(){
       return {
         result: 0,
-        dec: 2,
+        dec: 1,
         h: 0,
         n: 2, // Número de sub-intervalos
         a: 0, // Limite inferior
@@ -24,7 +24,7 @@
     methods: {
       clear() {
         this.n= 2;
-        this.dec= 2;
+        this.dec= 1;
         this.a= 0;
         this.b= 1;
         this.func= 'x^2';
@@ -98,10 +98,10 @@
 </script>
 
 <template>
-  <div class="container py-2">
+  <div class="container py-4">
 
 
-    <div class="card  text-white bg-dark " >
+    <div class="card shadow  text-white bg-dark " >
       <div class="card-header bg-">
         <h3 class="text-center text-warning">
           Integração pelo método de trapézio
@@ -152,10 +152,10 @@
             </div>
             <div class="col-12 col-md-3">
               <div class="form-group">
-                <label for="">Casa decimais</label>
+                <label for="">Casas decimais</label>
                 <select v-model="dec" class="form-select form-select-sm" aria-label="Default select example">
-                  <option seleted value="2">2 Casas</option>
-                  <option v-for="i=3 in 4" :value="i+2"> {{ i + 2}} Casas</option>
+                  <option seleted value="1">1 Casa</option>
+                  <option v-for="i=3 in 4" :value="i+1"> {{ i + 1}} Casas</option>
                 </select>
               </div>
             </div>
@@ -163,7 +163,7 @@
           <button @click.prevent="validate" class="btn btn-success mt-2">Calcular</button>
         </form>
 
-        <div class="row py-3 rounded">
+        <div v-if="result != 0" class="row py-3 rounded">
           <h4 class="text-info">H= {{ h }} </h4>
           <div class="col">
             <table class="table table-striped table-secondary rounded">
@@ -188,11 +188,11 @@
             </table>
           </div>
         </div>
-        <h5>Área Total: <span class="text-warning mt--5"> {{ result }} </span> </h5>
-        <button @click="clear" class="btn btn-info btn-sm">Limpar</button>
+        <h5  v-if="result != 0">Área Total: <span class="text-warning mt--5"> {{ result }} </span> </h5>
+        <button  v-if="result != 0" @click="clear" class="btn btn-info btn-sm">Limpar</button>
       </div>
-      <div class="bg-success">
-        <i class="text-center text-light mt-4"><h5> Edson Da Cruz & Paulo Novela</h5></i>
+      <div class="bg-success pt-2">
+        <i class="text-center text-light mt-4 "><h5> Edson Da Cruz & Paulo Novela</h5></i>
       </div>
     </div>
   </div>
